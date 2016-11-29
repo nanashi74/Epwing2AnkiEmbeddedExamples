@@ -257,7 +257,7 @@ namespace Epwing2Anki
       }
 
       // Search dics needed for examples
-      this.lookupExampleDics(word.Word, cardInfo);
+      this.lookupExampleDics(word, cardInfo);
 
       if (this.undoLastChoice)
       {
@@ -410,13 +410,36 @@ namespace Epwing2Anki
     /// Will skip any dics that have already been searched.
     /// Adds to cardInfo.
     /// </summary>
-    private void lookupExampleDics(string word, CardInfo cardInfo)
+    private void lookupExampleDics(WordListItem wordItem, CardInfo cardInfo)
     {
+      string word = wordItem.Word;
       bool exampleDicsNeeded = this.settings.CardLayout.containsExamplesField();
 
       // If the example field is in the card layout
       if (exampleDicsNeeded)
       {
+        // Beforse seargin, check if the user has supplied an example sentence with the word
+        // If so, add it first
+        if (settings.FineTuneOptions.UseEmbeddedExamples)
+        {
+          // Construct the example sentence
+          Example ex = new Example();
+          ex.DicName = "Embedded";
+          ex.Priority = 1; // assign highest priority by default
+          ex.Text = wordItem.Example;
+          ex.HasTranslation = false;
+
+          // Construct an Entry, to make this appear as if it is coming from a dictionary
+          Entry e = new Entry();
+          e.DicName = "Embedded";
+          e.Expression = word;
+          e.ExampleList = new List<Example>();
+          e.ExampleList.Add(ex);
+
+          cardInfo.Entries.Add("Embedded", e);
+          //cardInfo.ChosenExampleList.Add(ex);
+        }
+
         // Search all dics in the example dic list
         foreach (Dic dic in this.settings.ExampleDicList.Dics)
         {

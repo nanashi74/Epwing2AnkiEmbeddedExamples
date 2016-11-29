@@ -66,6 +66,7 @@ namespace Epwing2Anki
       this.fineTuneOptions.JjKeepExamplesInDef = this.checkBoxJJKeepExamplesInDef.Checked;
       this.fineTuneOptions.JjRemoveSpecialReadingChars = this.checkBoxJJRemoveSpecialCharsFromReading.Checked;
       this.fineTuneOptions.JjFillInExampleBlanksWithWord = this.checkBoxJJFillInExampleBlanksWithWord.Checked;
+      this.fineTuneOptions.UseEmbeddedExamples = this.checkBoxEmbeddedUse.Checked;
 
       this.DialogResult = DialogResult.OK;
       this.Close();

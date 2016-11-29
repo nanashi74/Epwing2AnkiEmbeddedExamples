@@ -27,6 +27,7 @@ namespace Epwing2Anki
   public class WordListItem
   {
     private string word = "";
+    private string example = "";
     private string rawLine = "";
 
     /// <summary>
@@ -48,12 +49,29 @@ namespace Epwing2Anki
     }
 
     /// <summary>
+    /// An example sentence to use
+    /// </summary>
+    public string Example
+        {
+            get { return this.example; }
+            set { this.example = value; }
+        }
+
+    /// <summary>
     /// Constructor.
     /// </summary>
     public WordListItem(string word, string rawLine)
     {
       this.word = word;
       this.rawLine = rawLine;
+      this.example = ""; 
+    }
+
+    public WordListItem(string word, string example, string rawLine)
+    {
+        this.word = word;
+        this.example = example;
+        this.rawLine = rawLine;
     }
   }
 }

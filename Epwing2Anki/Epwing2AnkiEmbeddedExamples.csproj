@@ -63,6 +63,7 @@
     <Compile Include="dicEpwingKojien6th.cs" />
     <Compile Include="DicEpwingMeikyo.cs" />
     <Compile Include="DicList.cs" />
+    <Compile Include="DicEmbedded.cs" />
     <Compile Include="FineTune.cs" />
     <Compile Include="FormFineTune.cs">
       <SubType>Form</SubType>

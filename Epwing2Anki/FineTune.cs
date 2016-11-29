@@ -30,6 +30,7 @@ namespace Epwing2Anki
     private bool jjKeepExamplesInDefs = false;
     private bool jjRemoveSpecialReadingChars = false;
     private bool jjFillInExampleBlanksWithWord = false;
+    private bool useEmbeddedExamples = false;   
   
 
     /// <summary>
@@ -143,6 +144,15 @@ namespace Epwing2Anki
       get { return this.jjFillInExampleBlanksWithWord; }
       set { this.jjFillInExampleBlanksWithWord = value; }
     }
+
+        /// <summary>
+        /// Treat the second column in the word list as an extra example sentence
+        /// </summary>
+        public bool UseEmbeddedExamples
+        {
+            get { return this.useEmbeddedExamples; }
+            set { this.useEmbeddedExamples = value;  }
+        }
 
 
   }

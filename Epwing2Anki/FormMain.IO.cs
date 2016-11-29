@@ -254,11 +254,18 @@ namespace Epwing2Anki
           if (fields.Length >= this.settings.WordListCol)
           {
             string word = fields[this.settings.WordListCol - 1].Trim();
+            string example = "";
+
+            if (settings.FineTuneOptions.UseEmbeddedExamples)
+            {
+              // assume the example is in the second column for now
+              example = fields[1].Trim();
+            }
 
             // Disallow blanks and duplicates
             if ((word != "") && !words.ContainsKey(word))
             {
-              words.Add(word, new WordListItem(word, line));
+              words.Add(word, new WordListItem(word, example, line));
             }
           }
           else

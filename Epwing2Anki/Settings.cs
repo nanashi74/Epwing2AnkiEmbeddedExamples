@@ -166,7 +166,25 @@ namespace Epwing2Anki
     /// </summary>
     public DicList ExampleDicList
     {
-      get { return this.exampleList; }
+      get {
+        // check if "embedded" dictionary is present
+        if (fineTuneOptions.UseEmbeddedExamples)
+        {
+          Dic embedded = new DicEmbedded();
+          DicList amended = new DicList();
+
+          // clone the list of dictionary references
+          amended.Dics = new List<Dic>(this.exampleList.Dics);
+
+          // add a new dictionary to the cloned list
+          amended.Dics.Insert(0, embedded);
+          return amended;
+        }
+        else
+        {
+          return this.exampleList;
+        }
+      }
       set { this.exampleList = value; }
     }
 
